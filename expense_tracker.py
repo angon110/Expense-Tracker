@@ -14,11 +14,18 @@ def main():
     # Get the initial budget from the user
     budget = get_initial_budget()
 
-    # Get user input for a new expense
-    expense = get_user_expense()
+    while True:
+        # Get user input for expense.
+        expense = get_user_expense()
 
-    # Write the new expense to a file
-    save_expense_to_file(expense, expense_file_path)
+        # Write their expense to a file.
+        save_expense_to_file(expense, expense_file_path)
+
+        # Ask the user if they want to add another expense.
+        another_expense = input("Add another expense? (yes/no): ").strip().lower()
+
+        if another_expense != "yes":
+            break  # Exit the loop if the user's response is not "yes"
 
     # Read the file and summarize expenses
     summarize_expenses(expense_file_path, budget)
